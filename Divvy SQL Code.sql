@@ -35,13 +35,13 @@ when month(started_at) in (10,11,12) then "Q4"
 else 'None'
 End) as Quarter
 from rides
-INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/kpi.csv'
+INTO OUTFILE 'kpi.csv'
 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
 -- KPI Export time table
 select ride_id, time_period, DOTW from rides
-INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/time.csv'
+INTO OUTFILE 'time.csv'
 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
@@ -53,10 +53,10 @@ LINES TERMINATED BY '\n';
 
 -- KPI Export duration table
 select ride_id, time_to_sec(duration_time) from rides
-INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/duration.csv'
+INTO OUTFILE 'duration.csv'
 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
-SHOW VARIABLES LIKE 'secure_file_priv';
+
 
 -- Different type of bike type
 SELECT DISTINCT(rideable_type) FROM rides;
